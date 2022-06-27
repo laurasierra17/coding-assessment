@@ -88,6 +88,17 @@ var countdown = 75;
 var quizContainer = document.getElementById("quiz-container");
 var timer = document.getElementById("timer");
 
+// Function to update user's score and timer
+function checkAnswer(questionObj, answer) {
+    if (questionObj.correctAnswer === questionObj.answers.indexOf(answer)) {
+        userScore++;
+        console.log("userscore: ", userScore);
+    } else {
+        countdown -= 10;
+    }
+}
+
+
 // Function that displays each question
 var i = 0;
 function displayQuiz(i) {
@@ -105,8 +116,10 @@ function displayQuiz(i) {
         answerBtn.textContent = answer;
         quizContainer.appendChild(answerBtn);
 
-        // when an answer is clicked, the question changes and so does the score (and timer, if necessary)
+        // when an answer is clicked, the question changes
         answerBtn.addEventListener("click", () => {
+            // update user's score depending on answer selection and timer
+            checkAnswer(questionnaire[i], answer);
             displayQuiz(++i);
         })
     })
@@ -121,9 +134,9 @@ function startQuiz() {
         timer.innerHTML = "Timer: " + countdown;
         
         // If the user finishes quiz or runs out of time
-        if (currentQuestion === numQuestions || countdown === 0) {
-            clearInterval(quizTimer);
-        }
+        // if (currentQuestion === numQuestions || countdown === 0) {
+        //     clearInterval(quizTimer);
+        // }
     }, 1000)
 }
 
