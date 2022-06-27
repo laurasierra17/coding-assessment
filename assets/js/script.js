@@ -91,39 +91,24 @@ var timer = document.getElementById("timer");
 // Function that displays each question
 var i = 0;
 function displayQuiz(i) {
-    // set i to 0 to indicate the first obj in the questionnaire array, next button
-    // score is set to 0, time is running
-    // if next button is pressed, i increments to move to the next question
-        // check if the selected answer matches our questionnaire correctAnswer
-        // if it does, increase points
-        // if it's not, deduct time by 10
-
     // empty main container
     quizContainer.innerHTML = "";
 
+    // Displays question
     var quizQuestion = document.createElement("h1");
     quizQuestion.innerHTML = questionnaire[i].question;
     quizContainer.appendChild(quizQuestion);
 
+    // Displays answer choices
     questionnaire[i].answers.forEach(answer => {
-        var answerInput = document.createElement("input");
-        var answerLabel = document.createElement("label");
-        answerInput.setAttribute("type", "radio");
-        answerLabel.innerHTML = answer;
-        quizContainer.appendChild(answerInput);
-        quizContainer.appendChild(answerLabel);
+        var answerBtn = document.createElement("button");
+        answerBtn.innerHTML = answer;
+        quizContainer.appendChild(answerBtn);
     })
 
-    var nextQuestionBtn = document.createElement("button");
-    nextQuestionBtn.innerHTML = "Submit";
-    quizContainer.appendChild(nextQuestionBtn);
 
-    // when submit is pressed, the question changes and so does the score (and timer, if necessary)
-    nextQuestionBtn.addEventListener("click", () => {
-        // userScore++;
-        i++
-        displayQuiz(i);
-    })
+    // when an answer is clicked, the question changes and so does the score (and timer, if necessary)
+    
 }
 
 // Function that runs when the user clicks the "Start" button in the landing page
