@@ -96,19 +96,20 @@ function displayQuiz(i) {
 
     // Displays question
     var quizQuestion = document.createElement("h1");
-    quizQuestion.innerHTML = questionnaire[i].question;
+    quizQuestion.textContent = questionnaire[i].question;
     quizContainer.appendChild(quizQuestion);
 
     // Displays answer choices
     questionnaire[i].answers.forEach(answer => {
         var answerBtn = document.createElement("button");
-        answerBtn.innerHTML = answer;
+        answerBtn.textContent = answer;
         quizContainer.appendChild(answerBtn);
+
+        // when an answer is clicked, the question changes and so does the score (and timer, if necessary)
+        answerBtn.addEventListener("click", () => {
+            displayQuiz(++i);
+        })
     })
-
-
-    // when an answer is clicked, the question changes and so does the score (and timer, if necessary)
-    
 }
 
 // Function that runs when the user clicks the "Start" button in the landing page
