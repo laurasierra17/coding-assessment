@@ -13,7 +13,7 @@ header nav{
     justify-content: space-between;
 }
 /* Ensures all content within the .quiz-container will remain centered */
-.quiz-container {
+#quiz-container {
     display: flex;
     justify-content: center;
     margin: 70px;

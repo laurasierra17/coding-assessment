@@ -77,3 +77,34 @@ var questionnaire = [
     },
 ]
 
+// The user's score
+var userScore = 0
+var currentQuestion = 0;
+var numQuestions = 15;
+
+// The timer
+var countdown = 75;
+
+// Pointers to different parts of the site
+var quizContainer = document.getElementById("quiz-container");
+var timer = document.getElementById("timer");
+
+// When the user clicks the "Start" button in the landing page, the quiz and the timer start
+function startQuiz() {
+    // currently, shows empty screen
+    quizContainer.innerHTML = "";
+
+    // In here, the timer begins
+    var quizTimer = setInterval(function () {
+        countdown--;
+        timer.innerHTML = "Timer: " + countdown;
+        
+        // If the user finishes quiz or runs out of time
+        if (currentQuestion === numQuestions || countdown === 0) {
+            clearInterval(quizTimer);
+        }
+    }, 1000)
+}
+
+var startBtn = document.getElementById("start-btn");
+startBtn.addEventListener("click", startQuiz);
