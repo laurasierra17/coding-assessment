@@ -79,8 +79,7 @@ var questionnaire = [
 
 // The user's score
 var userScore = 0
-var currentQuestion = 0;
-var numQuestions = 15;
+var numQuestions = questionnaire.length;
 
 // The timer
 var countdown = 75;
@@ -89,11 +88,47 @@ var countdown = 75;
 var quizContainer = document.getElementById("quiz-container");
 var timer = document.getElementById("timer");
 
-// When the user clicks the "Start" button in the landing page, the quiz and the timer start
-function startQuiz() {
-    // currently, shows empty screen
+// Function that displays each question
+var i = 0;
+function displayQuiz(i) {
+    // set i to 0 to indicate the first obj in the questionnaire array, next button
+    // score is set to 0, time is running
+    // if next button is pressed, i increments to move to the next question
+        // check if the selected answer matches our questionnaire correctAnswer
+        // if it does, increase points
+        // if it's not, deduct time by 10
+
+    // empty main container
     quizContainer.innerHTML = "";
 
+    var quizQuestion = document.createElement("h1");
+    quizQuestion.innerHTML = questionnaire[i].question;
+    quizContainer.appendChild(quizQuestion);
+
+    questionnaire[i].answers.forEach(answer => {
+        var answerInput = document.createElement("input");
+        var answerLabel = document.createElement("label");
+        answerInput.setAttribute("type", "radio");
+        answerLabel.innerHTML = answer;
+        quizContainer.appendChild(answerInput);
+        quizContainer.appendChild(answerLabel);
+    })
+
+    var nextQuestionBtn = document.createElement("button");
+    nextQuestionBtn.innerHTML = "Submit";
+    quizContainer.appendChild(nextQuestionBtn);
+
+    // when submit is pressed, the question changes and so does the score (and timer, if necessary)
+    nextQuestionBtn.addEventListener("click", () => {
+        // userScore++;
+        i++
+        displayQuiz(i);
+    })
+}
+
+// Function that runs when the user clicks the "Start" button in the landing page
+function startQuiz() {
+    displayQuiz(i);
     // In here, the timer begins
     var quizTimer = setInterval(function () {
         countdown--;
@@ -106,5 +141,8 @@ function startQuiz() {
     }, 1000)
 }
 
+
+// Points to the "Start" button in the landing page
 var startBtn = document.getElementById("start-btn");
+// When the user clicks the "Start" button in the landing page, the quiz and the timer start
 startBtn.addEventListener("click", startQuiz);
