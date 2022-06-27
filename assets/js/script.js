@@ -1,0 +1,79 @@
+// The quiz array stores in each index: the question, an array of each choice, the index of the right answer
+var questionnaire = [
+    { // html
+        question: "What is the correct HTML for creating a hyperlink?",
+        answers: ["<a>http://www.w3schools.com</a>", "<a url=\"http://www.w3schools.com\">W3Schools.com</a>", "<a name=\"http://www.w3schools.com\">W3Schools.com</a>", "<a href=\"http://www.w3schools.com\">W3Schools</a>"],
+        correctAnswer: 3
+    },
+    { 
+        question: "Which of these statements are all <table> elements?",
+        answers: ["<table><tr><tt>", "<thead><body><tr>", "<table><tr><td>", "<table><head><tfoot>"],
+        correctAnswer: 2
+    },
+    { 
+        question: "Inline elements are normally displayed without starting a new line.",
+        answers: ["True", "False"],
+        correctAnswer: 0
+    },
+    { 
+        question: "What is the correct HTML for making a checkbox?",
+        answers: ["<input type=\"checkbox\">", "<input type=\"check\">", "<check>", "<checkbox>"],
+        correctAnswer: 0
+    },
+    {
+        question: "The HTML global attribute, \"contenteditable\" is used to:",
+        answers: ["Return the position of the first found occurrence of content inside a string", "Update content from the server", "Specify whether the content of an element should be editable or not", "Specifies a context menu for an element. The menu appears when a user right-clicks on the element"],
+        correctAnswer: 2
+    },
+    { // css
+        question: "What is the correct CSS syntax for making all the <p> elements bold?",
+        answers: ["p {text-size:bold;}", "p {font-weight:bold;}", "<p style=\"text-size:bold;\">", "<p style=\"font-size:bold;\">"],
+        correctAnswer: 1
+    },
+    {
+        question: "How do you make each word in a text start with a capital letter?",
+        answers: ["You can't do that with CSS", "text-style:capitalize", "text-transform:capitalize", "transform:capitalize"],
+        correctAnswer: 2
+    },
+    { 
+        question: "How do you display a border like this:\n\nThe top border = 10 pixels\nThe bottom border = 5 pixels\nThe left border = 20 pixels\nThe right border = 1pixel?",
+        answers: ["border-width:10px 1px 5px 20px;", "border-width:10px 5px 20px 1px;", "border-width:10px 20px 5px 1px;", "border-width:5px 20px 10px 1px;"],
+        correctAnswer: 0
+    },
+    { 
+        question: "Which property is used to change the left margin of an element?",
+        answers: ["padding-left", "margin-left", "indent"],
+        correctAnswer: 1
+    },
+    { 
+        question: "How do you select an element with id 'demo'?",
+        answers: ["*demo", "#demo", ".demo", "demo"],
+        correctAnswer: 1
+    },
+    { // js
+        question: "What is the correct JavaScript syntax to change the content of the HTML element below?\n<p id=\"demo\">This is a demonstration.</p>",
+        answers: ["#demo.innerHTML = \"Hello World!\";", "document.getElementByName(\"p\").innerHTML = \"Hello World!\";", "document.getElement(\"p\").innerHTML = \"Hello World!\";", "document.getElementById(\"demo\").innerHTML = \"Hello World!\";"],
+        correctAnswer: 3
+    },
+    { 
+        question: "How do you create a function in JavaScript?",
+        answers: ["function myFunction()", "function:myFunction()", "function = myFunction()"],
+        correctAnswer: 0
+    },
+    { 
+        question: "How to write an IF statement for executing some code if \"i\" is NOT equal to 5?",
+        answers: ["if (i!== 5)", "if (i <> 5)", "if i !=5 then", "if i <> 5"],
+        correctAnswer: 0
+    },
+    {
+        question: "What is the correct way to write a JavaScript array?",
+        answers: ["var colors = (1:\"red\", 2:\"green\", 3:\"blue\")", "var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")", "var colors = \"red\", \"green\", \"blue\"", "var colors = [\"red\", \"green\", \"blue\"]"],
+        correctAnswer: 3
+    },
+    {
+        question: "Which event occurs when the user clicks on an HTML element?",
+        answers: ["onmouseover", "onchange", "onclick", "onmouseclick"],
+        correctAnswer: 2
+    },
+]
+
