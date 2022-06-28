@@ -95,13 +95,24 @@ var highScoresContainer = document.getElementById("high-scores");
 // when the highScoresContainer link is clicked, take them to the high scores board
 highScoresContainer.addEventListener("click", renderHighScores);
 
+// Save current user object to local storage
+function saveToLocalStorage(user) {
+    localStorage.setItem("initials", user.initials);
+    localStorage.setItem("score", JSON.stringify(user.score));
+
+    // clean current user object
+    user.score = 0;
+    user.initials = "";
+}
+
+
+
 // make sure user doesnt leave the initials input empty
 // save users initials and score in local storage
 // when submit button is placed, take user to the high scores board
 // in high scores board, show an emtpy table with one scores row if no scores saved
 // populate that scores row if theres anything in local storage
 // as scores and stuff add up, update local storage and update table
-
 function renderHighScores() {
     // Clear page
     quizContainer.innerHTML = "";
@@ -110,12 +121,19 @@ function renderHighScores() {
     title.textContent = "High Scores";
     quizContainer.appendChild(title);
 
+    // Button that allows user to retake the quiz
+    var backBtn = document.createElement("button");
+    backBtn.textContent = "Retake quiz NOW";
+    quizContainer.appendChild(backBtn)
+
+    backBtn.addEventListener("click", () => {
+        countdown = 75;
+        startQuiz();
+    });
+
     // check if local storage is populated
     // if (localStorage.)
 }
-
-
-
 
 // Once the user ends the quiz, display their score and ask for their initials for the scoreboard
 function postQuiz() {
@@ -145,8 +163,10 @@ function postQuiz() {
     quizContainer.appendChild(nameInput);
     quizContainer.appendChild(submitBtn);
 
-    // when button is pressed, take user to high scores board
+    // when button is pressed, save user's intiials and take them to high scores board
     submitBtn.addEventListener("click", () => {
+        user.initials = nameInput.value;
+        saveToLocalStorage(user);
         renderHighScores();
     })
 }
