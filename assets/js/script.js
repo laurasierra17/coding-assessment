@@ -88,6 +88,12 @@ var countdown = 75;
 var quizContainer = document.getElementById("quiz-container");
 var timer = document.getElementById("timer");
 
+// Once the user ends the quiz, display their score and ask for their initials for the scoreboard
+function postQuiz() {
+    quizContainer.innerHTML = "";
+}
+
+
 // Function to update user's score and timer
 function checkAnswer(questionObj, answer) {
     if (questionObj.correctAnswer === questionObj.answers.indexOf(answer)) {
@@ -100,8 +106,13 @@ function checkAnswer(questionObj, answer) {
 
 
 // Function that displays each question
+// the 'i' variable determines the question displayed
 var i = 0;
 function displayQuiz(i) {
+    // exit and stop timer if we are past the last question
+    if (i === 15) {
+        return;
+    }
     // empty main container
     quizContainer.innerHTML = "";
 
@@ -128,15 +139,17 @@ function displayQuiz(i) {
 // Function that runs when the user clicks the "Start" button in the landing page
 function startQuiz() {
     displayQuiz(i);
+
     // In here, the timer begins
     var quizTimer = setInterval(function () {
         countdown--;
         timer.innerHTML = "Timer: " + countdown;
-        
-        // If the user finishes quiz or runs out of time
-        // if (currentQuestion === numQuestions || countdown === 0) {
-        //     clearInterval(quizTimer);
-        // }
+
+        // If the user runs out of time
+        if (countdown <= 0) {
+            clearInterval(quizTimer);
+            postQuiz();
+        }
     }, 1000)
 }
 
