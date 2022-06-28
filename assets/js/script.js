@@ -98,6 +98,9 @@ function renderHighScores() {
     // Clear page
     quizContainer.innerHTML = "";
 
+    // Change the id of quizContainer to state the styling for this screen
+    quizContainer.setAttribute("id", "high-scores-pg");
+
     var title = document.createElement("h1");
     title.textContent = "High Scores";
     quizContainer.appendChild(title);
@@ -110,20 +113,28 @@ function renderHighScores() {
         // Append localStorage results to the screen
         for (var i = 0; i < arr.length; i++) {
             var result = document.createElement("p");
+            result.setAttribute("class", "score-text");
             result.textContent = (i + 1) + ". " + arr[i].userScore + " - " + arr[i].userInitials;
             quizContainer.appendChild(result);
         }
     } else {
         // If localStorage is empty, announce user they haven't played yet
         var result = document.createElement("p");
+        result.setAttribute("class", "score-text");
         result.textContent = "No scores have been registered yet.";
         quizContainer.appendChild(result);
     }
 
+    // Container for the next two buttons
+    var div = document.createElement("div");
+    div.setAttribute("class", "btn-container");
+    quizContainer.appendChild(div);
+
     // Button that allows user to retake the quiz
     var backBtn = document.createElement("button");
+    backBtn.setAttribute("class", "high-scores-btn");
     backBtn.textContent = "Take quiz";
-    quizContainer.appendChild(backBtn);
+    div.appendChild(backBtn);
 
     backBtn.addEventListener("click", () => {
         // Reset countdown
@@ -133,8 +144,9 @@ function renderHighScores() {
 
     // Button that allows user to clear scores board
     var clearScoresBtn = document.createElement("button");
+    clearScoresBtn.setAttribute("class", "high-scores-btn");
     clearScoresBtn.textContent = "Clear high scores";
-    quizContainer.appendChild(clearScoresBtn);
+    div.appendChild(clearScoresBtn);
 
     clearScoresBtn.addEventListener("click" , () => {
         localStorage.clear();
@@ -151,7 +163,7 @@ function postQuiz() {
     quizContainer.innerHTML = "";
     timer.innerHTML = "Timer: 0";
 
-    // Add more attributes to the quizContainer to state the styling for this screen
+    // Change id of quizContainer to state the styling for this screen
     quizContainer.setAttribute("id", "post-quiz");
     
     // Container to style label and input for initials
@@ -222,7 +234,7 @@ function displayQuiz(i) {
     }
     // Empty main container
     quizContainer.innerHTML = "";
-    // Add another id to the quizContainer to state the styling for this screen
+    // Change the id of quizContainer to state the styling for this screen
     quizContainer.setAttribute("id", "quiz-screen");
 
     // Displays question
@@ -277,4 +289,4 @@ function startQuiz() {
 // Points to the "Start" button in the landing page
 var startBtn = document.getElementById("start-btn");
 // When the user clicks the "Start" button in the landing page, the quiz and the timer start
-startBtn.addEventListener("click", postQuiz);
+startBtn.addEventListener("click", renderHighScores);

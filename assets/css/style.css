@@ -71,3 +71,27 @@ header nav{
 #input-submit {
     padding: 10px 20px;
 }
+
+/* ---------------------------------- HIGH SCORES PAGE ---------------------------------- */
+#high-scores-pg {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 40px;
+}
+.score-text {
+    font-size: 25px;
+    margin: 15px;
+    padding: 5px;
+    background-color: antiquewhite;
+}
+.btn-container {
+    margin: auto;
+    align-items: center;
+}
+.btn-container .high-scores-btn {
+    margin: 20px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
