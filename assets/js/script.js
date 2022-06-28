@@ -92,6 +92,28 @@ var timer = document.getElementById("timer");
 function postQuiz() {
     quizContainer.innerHTML = "";
     timer.innerHTML = "Timer: 0";
+
+    // populate post quiz screen with user's score and ask for their initials
+    var finalMessage = document.createElement("h1");
+    finalMessage.textContent = "Good work!";
+    var scoreMessage = document.createElement("h2");
+    scoreMessage.textContent = "Your final score is " + userScore + " out of 15.";
+    var nameLabel = document.createElement("label");
+    nameLabel.textContent = "Your initials: ";
+    nameLabel.setAttribute("for", "initials")
+    var nameInput = document.createElement("input");
+    nameInput.setAttribute("type", "text");
+    nameInput.setAttribute("id", "initials");
+    var submitBtn = document.createElement("input");
+    submitBtn.setAttribute("type", "submit");
+    submitBtn.setAttribute("value", "Submit");
+
+    // append everything to the page
+    quizContainer.appendChild(finalMessage);
+    quizContainer.appendChild(scoreMessage);
+    quizContainer.appendChild(nameLabel);
+    quizContainer.appendChild(nameInput);
+    quizContainer.appendChild(submitBtn);
 }
 
 
@@ -104,7 +126,6 @@ function checkAnswer(questionObj, answer) {
         countdown -= 10;
     }
 }
-
 
 // Function that displays each question
 // the 'i' variable determines the question displayed
