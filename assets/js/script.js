@@ -77,8 +77,11 @@ var questionnaire = [
     },
 ]
 
-// The user's score
-var userScore = 0
+var user = {
+    score: 0,
+    initials: ""
+}
+
 var numQuestions = questionnaire.length;
 
 // The timer
@@ -87,17 +90,44 @@ var countdown = 75;
 // Pointers to different parts of the site
 var quizContainer = document.getElementById("quiz-container");
 var timer = document.getElementById("timer");
+var highScoresContainer = document.getElementById("high-scores");
+
+// when the highScoresContainer link is clicked, take them to the high scores board
+highScoresContainer.addEventListener("click", renderHighScores);
+
+// make sure user doesnt leave the initials input empty
+// save users initials and score in local storage
+// when submit button is placed, take user to the high scores board
+// in high scores board, show an emtpy table with one scores row if no scores saved
+// populate that scores row if theres anything in local storage
+// as scores and stuff add up, update local storage and update table
+
+function renderHighScores() {
+    // Clear page
+    quizContainer.innerHTML = "";
+
+    var title = document.createElement("h1");
+    title.textContent = "High Scores";
+    quizContainer.appendChild(title);
+
+    // check if local storage is populated
+    // if (localStorage.)
+}
+
+
+
 
 // Once the user ends the quiz, display their score and ask for their initials for the scoreboard
 function postQuiz() {
     quizContainer.innerHTML = "";
     timer.innerHTML = "Timer: 0";
 
+    // NOTE TO SELF: convert into a function? looks more organized.
     // populate post quiz screen with user's score and ask for their initials
     var finalMessage = document.createElement("h1");
     finalMessage.textContent = "Good work!";
     var scoreMessage = document.createElement("h2");
-    scoreMessage.textContent = "Your final score is " + userScore + " out of 15.";
+    scoreMessage.textContent = "Your final score is " + user.score + " out of 15.";
     var nameLabel = document.createElement("label");
     nameLabel.textContent = "Your initials: ";
     nameLabel.setAttribute("for", "initials")
@@ -114,14 +144,19 @@ function postQuiz() {
     quizContainer.appendChild(nameLabel);
     quizContainer.appendChild(nameInput);
     quizContainer.appendChild(submitBtn);
+
+    // when button is pressed, take user to high scores board
+    submitBtn.addEventListener("click", () => {
+        renderHighScores();
+    })
 }
 
 
 // Function to update user's score and timer
 function checkAnswer(questionObj, answer) {
     if (questionObj.correctAnswer === questionObj.answers.indexOf(answer)) {
-        userScore++;
-        console.log("userscore: ", userScore);
+        user.score++;
+        console.log("userscore: ", user.score);
     } else {
         countdown -= 10;
     }
