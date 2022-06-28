@@ -212,12 +212,14 @@ function displayQuiz(i) {
 
     // Displays question
     var quizQuestion = document.createElement("h1");
+    quizQuestion.setAttribute("class", "title");
     quizQuestion.textContent = questionnaire[i].question;
     quizContainer.appendChild(quizQuestion);
 
     // Displays answer choices
     questionnaire[i].answers.forEach(answer => {
         var answerBtn = document.createElement("button");
+        answerBtn.setAttribute("class", "choice-btn")
         answerBtn.textContent = answer;
         quizContainer.appendChild(answerBtn);
 
