@@ -122,17 +122,6 @@ function renderHighScores() {
     title.textContent = "High Scores";
     quizContainer.appendChild(title);
 
-    // Button that allows user to retake the quiz
-    var backBtn = document.createElement("button");
-    backBtn.textContent = "Retake quiz NOW";
-    quizContainer.appendChild(backBtn)
-
-    backBtn.addEventListener("click", () => {
-        // reset countdown
-        countdown = 75;
-        startQuiz();
-    });
-
     // Check if localStorage is empty or not to determine what to render
     if (localStorage.getItem("scores") !== null) {
         // store info in localStorage
@@ -150,6 +139,28 @@ function renderHighScores() {
         result.textContent = "No scores have been registered yet.";
         quizContainer.appendChild(result);
     }
+
+    // Button that allows user to retake the quiz
+    var backBtn = document.createElement("button");
+    backBtn.textContent = "Retake quiz NOW";
+    quizContainer.appendChild(backBtn);
+
+    backBtn.addEventListener("click", () => {
+        // reset countdown
+        countdown = 75;
+        startQuiz();
+    });
+
+    // Button that allows user to clear scores board
+    var clearScoresBtn = document.createElement("button");
+    clearScoresBtn.textContent = "Clear high scores";
+    quizContainer.appendChild(clearScoresBtn);
+
+    clearScoresBtn.addEventListener("click" , () => {
+        localStorage.clear();
+        userArray = [];
+        renderHighScores();
+    })
 }
 
 // when the highScoresContainer link is clicked, take them to the high scores board
@@ -185,9 +196,13 @@ function postQuiz() {
 
     // when button is pressed, save user's info and take them to high scores board
     submitBtn.addEventListener("click", () => {
-        userArray.push({ userScore: score, userInitials: nameInput.value });
-        updateLocalStorage(userArray);
-        renderHighScores();
+        if (nameInput.value == "") {
+            alert("Please write your initials");
+        } else {
+            userArray.push({ userScore: score, userInitials: nameInput.value });
+            updateLocalStorage(userArray);
+            renderHighScores();
+        }
     })
 }
 
