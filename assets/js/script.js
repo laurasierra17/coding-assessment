@@ -107,9 +107,6 @@ var quizContainer = document.getElementById("quiz-container");
 var timer = document.getElementById("timer");
 var highScoresContainer = document.getElementById("high-scores");
 
-// when the highScoresContainer link is clicked, take them to the high scores board
-highScoresContainer.addEventListener("click", renderHighScores);
-
 // Save current user object to local storage
 function updateLocalStorage(userArray) {
     localStorage.setItem("scores", JSON.stringify(userArray));
@@ -136,9 +133,27 @@ function renderHighScores() {
         startQuiz();
     });
 
-    // check if local storage is populated
-    // if (localStorage.)
+    // Check if localStorage is empty or not to determine what to render
+    if (localStorage.getItem("scores") !== null) {
+        // store info in localStorage
+        var arr = JSON.parse(localStorage.getItem("scores"));
+        
+        // append localStorage results to the screen
+        for (var i = 0; i < arr.length; i++) {
+            var result = document.createElement("p");
+            result.textContent = (i + 1) + ". " + arr[i].userScore + " - " + arr[i].userInitials;
+            quizContainer.appendChild(result);
+        }
+    } else {
+        // If localStorage is empty, announce user they haven't played yet
+        var result = document.createElement("p");
+        result.textContent = "No scores have been registered yet.";
+        quizContainer.appendChild(result);
+    }
 }
+
+// when the highScoresContainer link is clicked, take them to the high scores board
+highScoresContainer.addEventListener("click", renderHighScores);
 
 // Once the user ends the quiz, display their score and ask for their initials for the scoreboard
 function postQuiz() {
