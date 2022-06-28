@@ -209,6 +209,8 @@ function displayQuiz(i) {
     }
     // Empty main container
     quizContainer.innerHTML = "";
+    // Add another id to the quizContainer to state the styling is for this page
+    quizContainer.setAttribute("id", "quiz-screen");
 
     // Displays question
     var quizQuestion = document.createElement("h1");

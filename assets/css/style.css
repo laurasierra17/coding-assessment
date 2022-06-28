@@ -36,6 +36,10 @@ header nav{
 }
 
 /* ---------------------------------- QUIZ PAGE ---------------------------------- */
+#quiz-container #quiz-screen {
+    display: flex;
+    flex-direction: column;
+}
 .choice-container {
     display: flex;
     flex-direction: column;
