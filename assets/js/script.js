@@ -77,10 +77,25 @@ var questionnaire = [
     },
 ]
 
-var user = {
-    score: 0,
-    initials: ""
-}
+// HOW TO STORE ALL POINTS IN THE LOCAL STORAGE
+// issue: they override each other bc they share the same name (score, initials);
+// solution: populate an array with the objects
+// var userArray = [
+//     {
+//         userScore: 3,
+//         userInitials: LS
+//     },
+//     {
+//         userScore: 5,
+//         userInitials: AM
+//     }
+// ]
+// and just keep pushing to the end of the array
+// re-call the render method
+
+var userArray = [];
+// temporary hold for user score
+var score;
 
 var numQuestions = questionnaire.length;
 
@@ -96,23 +111,12 @@ var highScoresContainer = document.getElementById("high-scores");
 highScoresContainer.addEventListener("click", renderHighScores);
 
 // Save current user object to local storage
-function saveToLocalStorage(user) {
-    localStorage.setItem("initials", user.initials);
-    localStorage.setItem("score", JSON.stringify(user.score));
-
-    // clean current user object
-    user.score = 0;
-    user.initials = "";
+function updateLocalStorage(userArray) {
+    localStorage.setItem("scores", JSON.stringify(userArray));
 }
 
 
-
-// make sure user doesnt leave the initials input empty
-// save users initials and score in local storage
-// when submit button is placed, take user to the high scores board
-// in high scores board, show an emtpy table with one scores row if no scores saved
-// populate that scores row if theres anything in local storage
-// as scores and stuff add up, update local storage and update table
+// render high scores page
 function renderHighScores() {
     // Clear page
     quizContainer.innerHTML = "";
@@ -127,6 +131,7 @@ function renderHighScores() {
     quizContainer.appendChild(backBtn)
 
     backBtn.addEventListener("click", () => {
+        // reset countdown
         countdown = 75;
         startQuiz();
     });
@@ -145,7 +150,7 @@ function postQuiz() {
     var finalMessage = document.createElement("h1");
     finalMessage.textContent = "Good work!";
     var scoreMessage = document.createElement("h2");
-    scoreMessage.textContent = "Your final score is " + user.score + " out of 15.";
+    scoreMessage.textContent = "Your final score is " + score + " out of 15.";
     var nameLabel = document.createElement("label");
     nameLabel.textContent = "Your initials: ";
     nameLabel.setAttribute("for", "initials")
@@ -163,10 +168,10 @@ function postQuiz() {
     quizContainer.appendChild(nameInput);
     quizContainer.appendChild(submitBtn);
 
-    // when button is pressed, save user's intiials and take them to high scores board
+    // when button is pressed, save user's info and take them to high scores board
     submitBtn.addEventListener("click", () => {
-        user.initials = nameInput.value;
-        saveToLocalStorage(user);
+        userArray.push({ userScore: score, userInitials: nameInput.value });
+        updateLocalStorage(userArray);
         renderHighScores();
     })
 }
@@ -175,8 +180,8 @@ function postQuiz() {
 // Function to update user's score and timer
 function checkAnswer(questionObj, answer) {
     if (questionObj.correctAnswer === questionObj.answers.indexOf(answer)) {
-        user.score++;
-        console.log("userscore: ", user.score);
+        score++;
+        console.log("userscore: ", score);
     } else {
         countdown -= 10;
     }
@@ -220,6 +225,9 @@ function displayQuiz(i) {
 // Function that runs when the user clicks the "Start" button in the landing page
 function startQuiz() {
     displayQuiz(i);
+
+    // set score to 0 every time the quiz is taken
+    score = 0;
 
     // In here, the timer begins
     var quizTimer = setInterval(function () {
