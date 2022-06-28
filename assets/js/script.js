@@ -128,7 +128,7 @@ function renderHighScores() {
         quizContainer.appendChild(result);
     }
 
-    // Container for the next two buttons
+    // Container for the next three buttons
     var div = document.createElement("div");
     div.setAttribute("class", "btn-container");
     quizContainer.appendChild(div);
@@ -156,6 +156,16 @@ function renderHighScores() {
         userArray = [];
         renderHighScores();
     })
+
+    // Button that takes user to landing page
+    var mainBtn = document.createElement("button");
+    mainBtn.setAttribute("class", "high-scores-btn");
+    mainBtn.textContent = "Go back to landing page";
+    div.appendChild(mainBtn);
+
+    mainBtn.addEventListener("click", () => {
+        window.location.reload();
+    });
 }
 
 // When the highScoresContainer link is clicked, take them to the high scores board
