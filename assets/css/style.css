@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
 }
-
+/* ---------------------------------- LANDING PAGE ---------------------------------- */
 /* Styling the header horizontally */
 header {
     margin: 40px;
@@ -33,4 +33,10 @@ header nav{
 #landing-page h3 {
     width: fit-content;
     padding: 30px 0;
+}
+
+/* ---------------------------------- QUIZ PAGE ---------------------------------- */
+.choice-container {
+    display: flex;
+    flex-direction: column;
 }

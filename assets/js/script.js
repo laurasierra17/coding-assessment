@@ -216,12 +216,17 @@ function displayQuiz(i) {
     quizQuestion.textContent = questionnaire[i].question;
     quizContainer.appendChild(quizQuestion);
 
+    // Container used to place answer choices vertically
+    var div = document.createElement("div");
+    div.setAttribute("class", "choice-container")
+    quizContainer.appendChild(div);
+
     // Displays answer choices
     questionnaire[i].answers.forEach(answer => {
         var answerBtn = document.createElement("button");
         answerBtn.setAttribute("class", "choice-btn")
         answerBtn.textContent = answer;
-        quizContainer.appendChild(answerBtn);
+        div.appendChild(answerBtn);
 
         // When an answer is clicked, the question changes
         answerBtn.addEventListener("click", () => {
