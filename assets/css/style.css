@@ -5,6 +5,9 @@
 }
 /* Cool pressing-down effect on every button on the page */
 button {
+    margin: 20px;
+    font-size: 20px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 5px 5px;
 }
@@ -96,9 +99,4 @@ header nav{
 .btn-container {
     margin: auto;
     align-items: center;
-}
-.btn-container .high-scores-btn {
-    margin: 20px;
-    font-size: 20px;
-    padding: 10px;
 }

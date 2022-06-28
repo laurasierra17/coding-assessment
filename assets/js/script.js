@@ -189,10 +189,9 @@ function postQuiz() {
     nameInput.setAttribute("type", "text");
     nameInput.setAttribute("id", "initials");
 
-    var submitBtn = document.createElement("input");
-    submitBtn.setAttribute("type", "submit");
-    submitBtn.setAttribute("value", "Submit");
+    var submitBtn = document.createElement("button");
     submitBtn.setAttribute("id", "input-submit");
+    submitBtn.textContent = "Submit";
 
     // Append everything to the page
     quizContainer.appendChild(finalMessage);
@@ -292,4 +291,4 @@ function startQuiz() {
 // Points to the "Start" button in the landing page
 var startBtn = document.getElementById("start-btn");
 // When the user clicks the "Start" button in the landing page, the quiz and the timer start
-startBtn.addEventListener("click", renderHighScores);
+startBtn.addEventListener("click", startQuiz);
