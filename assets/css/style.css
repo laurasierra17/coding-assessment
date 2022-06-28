@@ -3,6 +3,14 @@
     margin: 0;
     padding: 0;
 }
+/* Cool pressing-down effect on every button on the page */
+button {
+    border-radius: 10px;
+    box-shadow: 5px 5px;
+}
+button:active {
+    box-shadow: none;
+}
 /* ---------------------------------- LANDING PAGE ---------------------------------- */
 /* Styling the header horizontally */
 header {
@@ -93,5 +101,4 @@ header nav{
     margin: 20px;
     font-size: 20px;
     padding: 10px;
-    border-radius: 10px;
 }

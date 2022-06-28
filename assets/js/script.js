@@ -98,6 +98,9 @@ function renderHighScores() {
     // Clear page
     quizContainer.innerHTML = "";
 
+    // Reset countdown
+    countdown = 75;
+
     // Change the id of quizContainer to state the styling for this screen
     quizContainer.setAttribute("id", "high-scores-pg");
 
