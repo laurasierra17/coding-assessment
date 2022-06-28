@@ -151,18 +151,29 @@ function postQuiz() {
     quizContainer.innerHTML = "";
     timer.innerHTML = "Timer: 0";
 
+    // Add more attributes to the quizContainer to state the styling for this screen
+    quizContainer.setAttribute("id", "post-quiz");
+    
+    // Container to style label and input for initials
+    var div = document.createElement("div");
+    div.setAttribute("class", "initials-container")
+
     // NOTE TO SELF: convert into a function? looks more organized.
     // Populate post quiz screen with user's score and ask for their initials
     var finalMessage = document.createElement("h1");
     finalMessage.textContent = "Good work!";
+
     var scoreMessage = document.createElement("h2");
     scoreMessage.textContent = "Your final score is " + score + " out of 15.";
+
     var nameLabel = document.createElement("label");
     nameLabel.textContent = "Your initials: ";
     nameLabel.setAttribute("for", "initials")
+
     var nameInput = document.createElement("input");
     nameInput.setAttribute("type", "text");
     nameInput.setAttribute("id", "initials");
+
     var submitBtn = document.createElement("input");
     submitBtn.setAttribute("type", "submit");
     submitBtn.setAttribute("value", "Submit");
@@ -170,8 +181,9 @@ function postQuiz() {
     // Append everything to the page
     quizContainer.appendChild(finalMessage);
     quizContainer.appendChild(scoreMessage);
-    quizContainer.appendChild(nameLabel);
-    quizContainer.appendChild(nameInput);
+    quizContainer.appendChild(div);
+    div.appendChild(nameLabel);
+    div.appendChild(nameInput);
     quizContainer.appendChild(submitBtn);
 
     // When button is pressed, save user's info and take them to the high scores board
@@ -264,4 +276,4 @@ function startQuiz() {
 // Points to the "Start" button in the landing page
 var startBtn = document.getElementById("start-btn");
 // When the user clicks the "Start" button in the landing page, the quiz and the timer start
-startBtn.addEventListener("click", startQuiz);
+startBtn.addEventListener("click", postQuiz);
