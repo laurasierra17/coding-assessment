@@ -209,7 +209,7 @@ function displayQuiz(i) {
     }
     // Empty main container
     quizContainer.innerHTML = "";
-    // Add another id to the quizContainer to state the styling is for this page
+    // Add another id to the quizContainer to state the styling for this screen
     quizContainer.setAttribute("id", "quiz-screen");
 
     // Displays question
