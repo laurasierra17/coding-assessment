@@ -177,6 +177,7 @@ function postQuiz() {
     var submitBtn = document.createElement("input");
     submitBtn.setAttribute("type", "submit");
     submitBtn.setAttribute("value", "Submit");
+    submitBtn.setAttribute("id", "input-submit");
 
     // Append everything to the page
     quizContainer.appendChild(finalMessage);

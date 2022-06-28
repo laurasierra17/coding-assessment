@@ -61,3 +61,13 @@ header nav{
     margin: 0 auto;
     padding: 40px;
 }
+.initials-container {
+    display: flex;
+    margin: 20px auto;
+}
+.initials-container label {
+    margin-right: 5px;
+}
+#input-submit {
+    padding: 10px 20px;
+}
