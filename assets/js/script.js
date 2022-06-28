@@ -77,28 +77,9 @@ var questionnaire = [
     },
 ]
 
-// HOW TO STORE ALL POINTS IN THE LOCAL STORAGE
-// issue: they override each other bc they share the same name (score, initials);
-// solution: populate an array with the objects
-// var userArray = [
-//     {
-//         userScore: 3,
-//         userInitials: LS
-//     },
-//     {
-//         userScore: 5,
-//         userInitials: AM
-//     }
-// ]
-// and just keep pushing to the end of the array
-// re-call the render method
-
 var userArray = [];
 // temporary hold for user score
 var score;
-
-var numQuestions = questionnaire.length;
-
 // The timer
 var countdown = 75;
 
@@ -112,8 +93,7 @@ function updateLocalStorage(userArray) {
     localStorage.setItem("scores", JSON.stringify(userArray));
 }
 
-
-// render high scores page
+// Render high scores page
 function renderHighScores() {
     // Clear page
     quizContainer.innerHTML = "";
@@ -124,10 +104,10 @@ function renderHighScores() {
 
     // Check if localStorage is empty or not to determine what to render
     if (localStorage.getItem("scores") !== null) {
-        // store info in localStorage
+        // Store user info in localStorage
         var arr = JSON.parse(localStorage.getItem("scores"));
         
-        // append localStorage results to the screen
+        // Append localStorage results to the screen
         for (var i = 0; i < arr.length; i++) {
             var result = document.createElement("p");
             result.textContent = (i + 1) + ". " + arr[i].userScore + " - " + arr[i].userInitials;
@@ -142,11 +122,11 @@ function renderHighScores() {
 
     // Button that allows user to retake the quiz
     var backBtn = document.createElement("button");
-    backBtn.textContent = "Retake quiz NOW";
+    backBtn.textContent = "Take quiz";
     quizContainer.appendChild(backBtn);
 
     backBtn.addEventListener("click", () => {
-        // reset countdown
+        // Reset countdown
         countdown = 75;
         startQuiz();
     });
@@ -163,7 +143,7 @@ function renderHighScores() {
     })
 }
 
-// when the highScoresContainer link is clicked, take them to the high scores board
+// When the highScoresContainer link is clicked, take them to the high scores board
 highScoresContainer.addEventListener("click", renderHighScores);
 
 // Once the user ends the quiz, display their score and ask for their initials for the scoreboard
@@ -172,7 +152,7 @@ function postQuiz() {
     timer.innerHTML = "Timer: 0";
 
     // NOTE TO SELF: convert into a function? looks more organized.
-    // populate post quiz screen with user's score and ask for their initials
+    // Populate post quiz screen with user's score and ask for their initials
     var finalMessage = document.createElement("h1");
     finalMessage.textContent = "Good work!";
     var scoreMessage = document.createElement("h2");
@@ -187,14 +167,14 @@ function postQuiz() {
     submitBtn.setAttribute("type", "submit");
     submitBtn.setAttribute("value", "Submit");
 
-    // append everything to the page
+    // Append everything to the page
     quizContainer.appendChild(finalMessage);
     quizContainer.appendChild(scoreMessage);
     quizContainer.appendChild(nameLabel);
     quizContainer.appendChild(nameInput);
     quizContainer.appendChild(submitBtn);
 
-    // when button is pressed, save user's info and take them to high scores board
+    // When button is pressed, save user's info and take them to the high scores board
     submitBtn.addEventListener("click", () => {
         if (nameInput.value == "") {
             alert("Please write your initials");
@@ -211,24 +191,23 @@ function postQuiz() {
 function checkAnswer(questionObj, answer) {
     if (questionObj.correctAnswer === questionObj.answers.indexOf(answer)) {
         score++;
-        console.log("userscore: ", score);
     } else {
         countdown -= 10;
     }
 }
 
 // Function that displays each question
-// the 'i' variable determines the question displayed
+// The 'i' variable determines the question displayed
 var i = 0;
-// the 'endQuiz' variable indicates all questions have been answered and the timer must stop
+// The 'endQuiz' variable indicates all questions have been answered and the timer must stop
 var endQuiz = false;
 function displayQuiz(i) {
-    // exit and stop timer if we are past the last question
+    // Exit and stop timer if we are past the last question
     if (i === 15) {
         endQuiz = true;
         return;
     }
-    // empty main container
+    // Empty main container
     quizContainer.innerHTML = "";
 
     // Displays question
@@ -242,9 +221,9 @@ function displayQuiz(i) {
         answerBtn.textContent = answer;
         quizContainer.appendChild(answerBtn);
 
-        // when an answer is clicked, the question changes
+        // When an answer is clicked, the question changes
         answerBtn.addEventListener("click", () => {
-            // update user's score depending on answer selection and timer
+            // Update user's score and timer depending on answer selection
             checkAnswer(questionnaire[i], answer);
             i++;
             displayQuiz(i);
@@ -256,7 +235,7 @@ function displayQuiz(i) {
 function startQuiz() {
     displayQuiz(i);
 
-    // set score to 0 every time the quiz is taken
+    // Set score to 0 every time the quiz is taken
     score = 0;
 
     // In here, the timer begins
@@ -264,7 +243,7 @@ function startQuiz() {
         countdown--;
         timer.innerHTML = "Timer: " + countdown;
 
-        // If the user finishes quiz or runs out of time
+        // If the user finishes quiz or runs out of time, take them to the post quiz screen
         if (endQuiz || countdown <= 0) {
             clearInterval(quizTimer);
             postQuiz();
