@@ -3,6 +3,13 @@
     margin: 0;
     padding: 0;
 }
+/* Color variables */
+:root {
+    --orange: chocolate;
+    --maroon: maroon;
+    --dull-maroon: rgba(114, 16, 16, 0.751);
+    --dull-black: rgba(0, 0, 0, 0.748);
+}
 /* Cool pressing-down effect on every button on the page */
 button {
     margin: 20px;
@@ -10,6 +17,8 @@ button {
     padding: 10px;
     border-radius: 10px;
     box-shadow: 5px 5px;
+    color: var(--orange);
+    cursor: pointer;
 }
 button:active {
     box-shadow: none;
@@ -22,6 +31,21 @@ header {
 header nav{
     display: flex;
     justify-content: space-between;
+}
+/* "View high scores" page direction with styling*/
+header nav a {
+    color:var(--orange);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 5px;
+
+}
+header nav a:hover {
+    font-weight: bolder;
+    font-size: larger;
+
 }
 /* Ensures all content within the .quiz-container will remain centered */
 #quiz-container {
@@ -36,14 +60,23 @@ header nav{
     align-items: center;
     width: 600px;
 }
+/* Change h1 styling */
+#landing-page h1 {
+    font-size: 45px;
+    color: var(--maroon);
+}
 /* Gives some top and bottom padding to h2 */
 #landing-page h2 {
     padding: 10px 0;
+    color: var(--dull-maroon);
 }
 /* The h3 element will remain with the max-width of its parent container */
 #landing-page h3 {
     width: fit-content;
     padding: 30px 0;
+    font-weight: 600;
+    font-size: larger;
+    color: var(--dull-black);
 }
 
 /* ---------------------------------- QUIZ PAGE ---------------------------------- */
