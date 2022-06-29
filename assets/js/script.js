@@ -77,8 +77,7 @@ var questionnaire = [
     },
 ]
 
-// to store the current user's initials and score
-var userArray = [];
+
 // temporary hold for user score
 var score;
 // The timer
@@ -135,7 +134,10 @@ function landingPage() {
     // Populate array with local storage info if the array was empty
     // Check if localStorage and userArray is empty or not to determine what to render
     if (localStorage.getItem("scores") !== null && userArray.length === 0) {
-        userArray.push(JSON.parse(localStorage.getItem("scores")));
+        var localData = JSON.parse(localStorage.getItem("scores"));
+        localData.forEach(user => {
+            userArray.push({ userScore: user["userScore"], userInitials: user["userInitials"] });
+        })
     }
 }
 
@@ -360,5 +362,7 @@ function startQuiz() {
     }, 1000)
 }
 
-// Load landing page
+// Clear userArray and load landing page
+// to store the current user's initials and score
+var userArray = [];
 landingPage();
