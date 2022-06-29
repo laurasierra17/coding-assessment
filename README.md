@@ -10,9 +10,15 @@
 
 To help myself and other fellow developers test our Web Development knowledge and find our weaknesses, I have created this coding assessment app that does just that. The user will have to answer 15 questions on HTML, CSS, and JavaScript within the given timeframe (75 seconds). The catch: for every question they get wrong, 10 seconds are deducted from the countdown. Once the user is done take the quiz, they'll be able to see their score and save it in the high scores board. Don't worry, your information won't be erased unless you press the button that is meant for that.
 
+Questions were gathered from the [W3Schools](https://www.w3schools.com/) website.
+
 ## Future Implementations
 
-
+Future implementations I'd add are:
+- Make the timer section more noticeable
+- Instant feedback on whether they selected the correct or incorrect answer
+- A section where the users can review the correct answers
+- As of right now, the scores board doesn't update your highest score-- only re-adds your initials with another score. I want to fix that.
 
 ## Code Snippets
 
