@@ -141,11 +141,16 @@ header nav a:hover {
     margin: 0 auto;
     padding: 40px;
 }
+#high-scores-pg h1 {
+    color: var(--maroon);
+}
 .score-text {
     font-size: 25px;
     margin: 15px;
-    padding: 5px;
+    padding: 10px;
     background-color: antiquewhite;
+    border: 2px solid var(--maroon);
+    border-radius: 5px;
 }
 .btn-container {
     margin: auto;
