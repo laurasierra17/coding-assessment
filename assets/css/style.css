@@ -105,6 +105,24 @@ header nav a:hover {
     margin: 0 auto;
     padding: 40px;
 }
+#post-quiz h1 {
+    font-size: 45px;
+    color: var(--orange);
+}
+#post-quiz h2 {
+    padding: 10px 0;
+    color: var(--dull-black);
+}
+#post-quiz label {
+    font-size: 25px;
+    margin: auto;
+    color: var(--dull-maroon);
+}
+#post-quiz input {
+    padding: 10px;
+    margin-left: 10px;
+    color: var(--dull-maroon);
+}
 .initials-container {
     display: flex;
     margin: 20px auto;
