@@ -134,7 +134,6 @@ function landingPage() {
 
 // Render high scores page
 function renderHighScores() {
-    console.log(userArray);
     // Clear page
     quizContainer.innerHTML = "";
     // Show link to view high scores board when user is taking the quiz
@@ -153,13 +152,23 @@ function renderHighScores() {
     if (localStorage.getItem("scores") !== null) {
         // Store user info in localStorage
         var arr = JSON.parse(localStorage.getItem("scores"));
+
+        // Order from highest to lowest score by first saving each userScore in an array, sort the array in descending order, and get corresponding userInitials
+        var scoreArr = arr.map(userObj => userObj.userScore);
+        scoreArr.sort((a, b) => b - a);
         
-        // Append localStorage results to the screen
-        for (var i = 0; i < arr.length; i++) {
-            var result = document.createElement("p");
-            result.setAttribute("class", "score-text");
-            result.textContent = (i + 1) + ". " + arr[i].userInitials + "   -   " + arr[i].userScore;
-            quizContainer.appendChild(result);
+        // Append localStorage results to the screen in descending order
+        for (var i = 0; i < scoreArr.length; i++) {
+            var j = 0;
+            while (j < arr.length) {
+                if (scoreArr[i] === arr[j].userScore) {
+                    var result = document.createElement("p");
+                    result.setAttribute("class", "score-text");
+                    result.textContent = (i + 1) + ". " + arr[j].userInitials + "   -   " + arr[j].userScore;
+                    quizContainer.appendChild(result);
+                }
+                j++;
+            }
         }
     } else {
         // If localStorage is empty, announce user they haven't played yet
