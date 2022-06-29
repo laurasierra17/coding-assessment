@@ -130,6 +130,9 @@ function landingPage() {
 
     // Append landing page container to the site's main container
     quizContainer.append(div);
+
+    // populate array with local storage
+    userArray.push(JSON.parse(localStorage.getItem("scores")));
 }
 
 // Render high scores page
