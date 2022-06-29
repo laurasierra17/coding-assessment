@@ -97,7 +97,10 @@ function updateLocalStorage(userArray) {
 function landingPage() {
     // Empty quiz container
     quizContainer.innerHTML = "";
-    
+
+    // Change the id of quizContainer to state the styling for this screen
+    quizContainer.setAttribute("id", "quiz-container");
+
     // Landing page container
     var div = document.createElement("div");
     div.setAttribute("id", "landing-page");
