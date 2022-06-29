@@ -80,6 +80,7 @@ header nav a:hover {
 }
 
 /* ---------------------------------- QUIZ PAGE ---------------------------------- */
+/* Centers quiz screen vertically */
 #quiz-screen {
     display: flex;
     flex-direction: column;
@@ -87,17 +88,20 @@ header nav a:hover {
     margin: 0 auto;
     padding: 40px;
 }
+/* Ensure all answer options are stacked on top of each other */
 .choice-container {
     display: flex;
     flex-direction: column;
     padding: 30px 0;
 }
+/* Styles quiz answer choices */
 .choice-container .choice-btn {
     padding: 20px 10px;
     margin: 10px;
 }
 
 /* ---------------------------------- POST QUIZ PAGE ---------------------------------- */
+/* Positions post quiz screen */
 #post-quiz {
     display: flex;
     flex-direction: column;
@@ -105,45 +109,51 @@ header nav a:hover {
     margin: 0 auto;
     padding: 40px;
 }
+/* Enlarges and styles heading 1 */
 #post-quiz h1 {
     font-size: 45px;
     color: var(--orange);
 }
+/* Styles headin 2 */
 #post-quiz h2 {
     padding: 10px 0;
     color: var(--dull-black);
 }
+/* Enlarges and styles label */
 #post-quiz label {
     font-size: 25px;
     margin: auto;
     color: var(--dull-maroon);
 }
+/* Enlarges input text field */
 #post-quiz input {
     padding: 10px;
     margin-left: 10px;
     color: var(--dull-maroon);
 }
+/* Ensures label and input are centered horizontally */
 .initials-container {
     display: flex;
     margin: 20px auto;
 }
-.initials-container label {
-    margin-right: 5px;
-}
+/* Styles button */
 #input-submit {
     padding: 10px 20px;
 }
 
 /* ---------------------------------- HIGH SCORES PAGE ---------------------------------- */
+/* Positions high scores board page */
 #high-scores-pg {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     padding: 40px;
 }
+/* Changes color for the heading 1 */
 #high-scores-pg h1 {
     color: var(--maroon);
 }
+/* Styles every score area */
 .score-text {
     font-size: 25px;
     margin: 15px;
@@ -152,6 +162,7 @@ header nav a:hover {
     border: 2px solid var(--maroon);
     border-radius: 5px;
 }
+/* Styles button */
 .btn-container {
     margin: auto;
     align-items: center;
