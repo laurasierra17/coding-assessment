@@ -1,9 +1,10 @@
 # A Coding Assessment App
 
-![GIF demo of the application]()
+![GIF demo of the application](./assets/images/Coding%20Quiz.gif)
 
 ## Screenshots
-![Screenshot of the application's landing page]()
+![Screenshot of the application's landing page](./assets/images/landing-pg.png)
+![Screenshot of the application's quiz page](./assets/images/quiz-pg.png)
 
 ## Description
 
