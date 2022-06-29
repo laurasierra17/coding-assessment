@@ -25,7 +25,7 @@ HTML, CSS, JavaScript, and Git
 
 ## Deployment link
 
-
+https://laurasierra17.github.io/coding-assessment/
 
 ### User Information
 - [LinkedIn](https://www.linkedin.com/in/laurasierra2022)
