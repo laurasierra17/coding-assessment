@@ -93,11 +93,49 @@ function updateLocalStorage(userArray) {
     localStorage.setItem("scores", JSON.stringify(userArray));
 }
 
+// Render landing page
+function landingPage() {
+    // Empty quiz container
+    quizContainer.innerHTML = "";
+    
+    // Landing page container
+    var div = document.createElement("div");
+    div.setAttribute("id", "landing-page");
+
+    // Heading 1
+    var header1 = document.createElement("h1");
+    header1.textContent = "Coding Assessment";
+    div.appendChild(header1);
+
+    // Heading 2
+    var header2 = document.createElement("h2");
+    header2.textContent = "A Practice Guide";
+    div.appendChild(header2);
+
+    // Heading 3
+    var header3 = document.createElement("h3");
+    header3.textContent = "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
+    div.appendChild(header3);
+
+    // Button to start quiz
+    var quizBtn = document.createElement("button");
+    quizBtn.setAttribute("id", "start-btn");
+    quizBtn.textContent = "Start Quiz";
+    // When the user clicks the "Start" button in the landing page, the quiz and the timer start
+    quizBtn.addEventListener("click", startQuiz);
+    div.appendChild(quizBtn);
+
+    // Append landing page container to the site's main container
+    quizContainer.append(div);
+}
+
 // Render high scores page
 function renderHighScores() {
+    console.log(userArray);
     // Clear page
     quizContainer.innerHTML = "";
-
+    // Show link to view high scores board when user is taking the quiz
+    highScoresContainer.style.visibility = "visible";
     // Reset countdown
     countdown = 75;
 
@@ -117,7 +155,7 @@ function renderHighScores() {
         for (var i = 0; i < arr.length; i++) {
             var result = document.createElement("p");
             result.setAttribute("class", "score-text");
-            result.textContent = (i + 1) + ". " + arr[i].userScore + " - " + arr[i].userInitials;
+            result.textContent = (i + 1) + ". " + arr[i].userInitials + "   -   " + arr[i].userScore;
             quizContainer.appendChild(result);
         }
     } else {
@@ -156,16 +194,15 @@ function renderHighScores() {
         userArray = [];
         renderHighScores();
     })
-
+ 
     // Button that takes user to landing page
     var mainBtn = document.createElement("button");
     mainBtn.setAttribute("class", "high-scores-btn");
     mainBtn.textContent = "Go back to landing page";
     div.appendChild(mainBtn);
 
-    mainBtn.addEventListener("click", () => {
-        window.location.reload();
-    });
+    // Reloading without resetting cache
+    mainBtn.addEventListener("click", landingPage);
 }
 
 // When the highScoresContainer link is clicked, take them to the high scores board
@@ -248,6 +285,8 @@ function displayQuiz(i) {
     quizContainer.innerHTML = "";
     // Change the id of quizContainer to state the styling for this screen
     quizContainer.setAttribute("id", "quiz-screen");
+    // Hide link to view high scores board when user is taking the quiz
+    highScoresContainer.style.visibility = "hidden";
 
     // Displays question
     var quizQuestion = document.createElement("h1");
@@ -297,8 +336,5 @@ function startQuiz() {
     }, 1000)
 }
 
-
-// Points to the "Start" button in the landing page
-var startBtn = document.getElementById("start-btn");
-// When the user clicks the "Start" button in the landing page, the quiz and the timer start
-startBtn.addEventListener("click", startQuiz);
+// Load landing page
+landingPage();
