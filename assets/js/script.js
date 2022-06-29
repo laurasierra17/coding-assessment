@@ -77,6 +77,7 @@ var questionnaire = [
     },
 ]
 
+// to store the current user's initials and score
 var userArray = [];
 // temporary hold for user score
 var score;
@@ -88,14 +89,14 @@ var quizContainer = document.getElementById("quiz-container");
 var timer = document.getElementById("timer");
 var highScoresContainer = document.getElementById("high-scores");
 
-// Save current user object to local storage
+// Helper function: Save current user object to local storage
 function updateLocalStorage(userArray) {
     localStorage.setItem("scores", JSON.stringify(userArray));
 }
 
 // Render landing page
 function landingPage() {
-    // Empty quiz container
+    // Ensure quiz container is empty before rendering
     quizContainer.innerHTML = "";
 
     // Change the id of quizContainer to state the styling for this screen
@@ -131,29 +132,18 @@ function landingPage() {
     // Append landing page container to the site's main container
     quizContainer.append(div);
 
-    // populate array with local storage
-    userArray.push(JSON.parse(localStorage.getItem("scores")));
+    // Populate array with local storage info if the array was empty
+    // Check if localStorage and userArray is empty or not to determine what to render
+    if (localStorage.getItem("scores") !== null && userArray.length === 0) {
+        userArray.push(JSON.parse(localStorage.getItem("scores")));
+    }
 }
 
-// Render high scores page
-function renderHighScores() {
-    // Clear page
-    quizContainer.innerHTML = "";
-    // Show link to view high scores board when user is taking the quiz
-    highScoresContainer.style.visibility = "visible";
-    // Reset countdown
-    countdown = 75;
-
-    // Change the id of quizContainer to state the styling for this screen
-    quizContainer.setAttribute("id", "high-scores-pg");
-
-    var title = document.createElement("h1");
-    title.textContent = "High Scores";
-    quizContainer.appendChild(title);
-
+// Helper function to retrieve data from local storage
+function getScoresFromLocalStorage(quizContainer) {
     // Check if localStorage is empty or not to determine what to render
     if (localStorage.getItem("scores") !== null) {
-        // Store user info in localStorage
+        // Get user info from localStorage
         var arr = JSON.parse(localStorage.getItem("scores"));
 
         // Order from highest to lowest score by first saving each userScore in an array, sort the array in descending order, and get corresponding userInitials
@@ -172,7 +162,7 @@ function renderHighScores() {
                 }
                 j++;
             }
-        }
+        } 
     } else {
         // If localStorage is empty, announce user they haven't played yet
         var result = document.createElement("p");
@@ -180,6 +170,26 @@ function renderHighScores() {
         result.textContent = "No scores have been registered yet.";
         quizContainer.appendChild(result);
     }
+}
+
+// Render high scores page
+function renderHighScores() {
+    // Ensure quiz container is empty before rendering
+    quizContainer.innerHTML = "";
+    // Show link to view high scores board after user is done taking the quiz
+    highScoresContainer.style.visibility = "visible";
+    // Reset countdown
+    countdown = 75;
+
+    // Change the id of quizContainer to state the styling for this screen
+    quizContainer.setAttribute("id", "high-scores-pg");
+
+    var title = document.createElement("h1");
+    title.textContent = "High Scores";
+    quizContainer.appendChild(title);
+
+    // Get user information from local storage
+    getScoresFromLocalStorage(quizContainer);
 
     // Container for the next three buttons
     var div = document.createElement("div");
@@ -216,7 +226,7 @@ function renderHighScores() {
     mainBtn.textContent = "Go back to landing page";
     div.appendChild(mainBtn);
 
-    // Reloading without resetting cache
+    // Taking user back to the landing page
     mainBtn.addEventListener("click", landingPage);
 }
 
@@ -235,7 +245,6 @@ function postQuiz() {
     var div = document.createElement("div");
     div.setAttribute("class", "initials-container")
 
-    // NOTE TO SELF: convert into a function? looks more organized.
     // Populate post quiz screen with user's score and ask for their initials
     var finalMessage = document.createElement("h1");
     finalMessage.textContent = "Good work!";
