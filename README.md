@@ -8,8 +8,10 @@
 
 ## Description
 
+To help myself and other fellow developers test our Web Development knowledge and find our weaknesses, I have created this coding assessment app that does just that. The user will have to answer 15 questions on HTML, CSS, and JavaScript within the given timeframe (75 seconds). The catch: for every question they get wrong, 10 seconds are deducted from the countdown. Once the user is done take the quiz, they'll be able to see their score and save it in the high scores board. Don't worry, your information won't be erased unless you press the button that is meant for that.
 
 ## Future Implementations
+
 
 
 ## Code Snippets
